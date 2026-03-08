@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEAM ASTRA | Beyond Limits</title>
+    <!-- Premium Fonts: Orbitron for titles, Inter for sleek body text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Orbitron:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Cyber/Radar Boot Loader -->
+    <div id="loader" class="cyber-loader">
+        <div class="radar-scan">
+            <div class="radar-line"></div>
+        </div>
+        <div class="loader-text-wrapper">
+            <h1 class="font-orbitron cyber-glitch" data-text="SYSTEM MOUNTING">SYSTEM MOUNTING</h1>
+            <p class="loader-sub">ESTABLISHING UPLINK TO ASTRA MAINFRAME...</p>
+        </div>
+    </div>
+
+    <!-- Background Layer -->
+    <canvas id="starfield"></canvas>
+
+    <!-- Parallax Layers -->
+    <div class="parallax-wrapper">
+        <div class="parallax-layer layer-bg" id="parallax-planet">
+            <img src="planet.png" alt="Planet" class="parallax-planet">
+        </div>
+    </div>
+
+    <!-- Ambient Glows -->
+    <div class="ambient-glow glow-cyan top-left"></div>
+    <div class="ambient-glow glow-violet bottom-right"></div>
+
+    <!-- Main Wrapper to sit above Canvas -->
+    <div class="content-wrapper">
+
+        <!-- Navbar -->
+        <header class="navbar" id="navbar">
+            <div class="nav-container">
+                <a href="#hero" class="brand">
+                    <span class="font-orbitron brand-text">ASTRA</span>
+                    <span class="brand-dot"></span>
+                </a>
+
+                <nav class="nav-links">
+                    <a href="#about" class="nav-item">Core<span class="nav-line"></span></a>
+                    <a href="#domains" class="nav-item">Orbits<span class="nav-line"></span></a>
+                    <a href="#nexus" class="nav-item">Nexus (Data)<span class="nav-line"></span></a>
+                    <a href="#contact" class="nav-item">Comms<span class="nav-line"></span></a>
+                </nav>
+
+                <div class="mobile-toggle">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="container hero-container grid-overlay">
+                <div class="hero-content reveal-on-load">
+                    <div class="badge glow-border">
+                        <span class="pulse-dot"></span> PROTOCOL // ALPHA
+                    </div>
+                    <h1 class="hero-title font-orbitron">
+                        <span>PIONEERING</span>
+                        <br>
+                        <span class="text-gradient-cyan">TOMORROW</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        An elite student syndicate dominating hackathons, architecting robotics, and forging the
+                        innovations of the next century.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#about" class="cyber-btn btn-primary">
+                            <span>INITIATE SEQUENCE</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#contact" class="cyber-btn btn-secondary">
+                            <span>TRANSMIT COMMS</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scroll-prompt">
+                <div class="cyber-mouse">
+                    <div class="scroller"></div>
+                </div>
+                <span class="font-orbitron text-xs tracking-wide">DESCEND</span>
+            </div>
+        </section>
+
+        <!-- About Core Architecture -->
+        <section id="about" class="section about-section">
+            <div class="container">
+                <div class="section-header reveal-scroll">
+                    <h2 class="font-orbitron section-title">CORE <span class="text-gradient-violet">DIRECTIVES</span>
+                    </h2>
+                    <p class="section-description">We are not just a team; we are a neural net of student innovators
+                        bridging imagination and tangible reality.</p>
+                </div>
+
+                <div class="neo-grid">
+                    <!-- Cards -->
+                    <div class="neo-card reveal-scroll reveal-delay-1">
+                        <div class="card-glow"></div>
+                        <div class="neo-card-content">
+                            <div class="icon-wrapper">
+                                <i class="fas fa-terminal text-cyan"></i>
+                            </div>
+                            <h3 class="font-orbitron card-title">HACKATHONS</h3>
+                            <p class="card-desc">Rapid prototyping and aggressive problem-solving under tight
+                                chronometric restraints.</p>
+                        </div>
+                    </div>
+
+                    <div class="neo-card reveal-scroll reveal-delay-2">
+                        <div class="card-glow"></div>
+                        <div class="neo-card-content">
+                            <div class="icon-wrapper">
+                                <i class="fas fa-microchip text-violet"></i>
+                            </div>
+                            <h3 class="font-orbitron card-title">ROBOTICS</h3>
+                            <p class="card-desc">Engineering autonomous kinematics and hardware architectures for
+                                physical world domination.</p>
+                        </div>
+                    </div>
+
+                    <div class="neo-card reveal-scroll reveal-delay-3">
+                        <div class="card-glow"></div>
+                        <div class="neo-card-content">
+                            <div class="icon-wrapper">
+                                <i class="fas fa-network-wired text-cyan"></i>
+                            </div>
+                            <h3 class="font-orbitron card-title">AI / ML</h3>
+                            <p class="card-desc">Training neural cores and predictive models to outthink standard
+                                computation.</p>
+                        </div>
+                    </div>
+
+                    <div class="neo-card reveal-scroll reveal-delay-4">
+                        <div class="card-glow"></div>
+                        <div class="neo-card-content">
+                            <div class="icon-wrapper">
+                                <i class="fas fa-cube text-violet"></i>
+                            </div>
+                            <h3 class="font-orbitron card-title">INNOVATION</h3>
+                            <p class="card-desc">Translating abstract futuristic concepts into deployable, functional
+                                prototypes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Orbits (Solar System Map Redesign) -->
+        <section id="domains" class="section domains-section">
+            <div class="container">
+                <div class="section-header reveal-scroll text-center">
+                    <h2 class="font-orbitron section-title">ORBITAL <span class="text-gradient-cyan">MAP</span></h2>
+                </div>
+
+                <div class="orbital-map-container reveal-scroll">
+                    <div class="center-core font-orbitron">
+                        <span>ASTRA</span>
+                        <div class="core-rings"></div>
+                    </div>
+
+                    <!-- Advanced Orbital Tracks & Planets -->
+                    <div class="orbit-track track-1">
+                        <div class="satellite sat-1" data-category="Robotics">
+                            <div class="sat-core bg-cyan"></div>
+                            <div class="tech-tooltip"><span>01</span> ROBOTICS</div>
+                        </div>
+                    </div>
+
+                    <div class="orbit-track track-2">
+                        <div class="satellite sat-2" data-category="Innovation/Ideathon">
+                            <div class="sat-core bg-violet"></div>
+                            <div class="tech-tooltip"><span>02</span> INNOVATION/IDEATHON</div>
+                        </div>
+                    </div>
+
+                    <div class="orbit-track track-3">
+                        <div class="satellite sat-3" data-category="AI/ML">
+                            <div class="sat-core bg-blue"></div>
+                            <div class="tech-tooltip"><span>03</span> AI/ML</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Nexus (Achievements & Gallery) -->
+        <section id="nexus" class="section nexus-section">
+            <div class="container">
+
+                <div class="nexus-header reveal-scroll">
+                    <h2 class="font-orbitron section-title">DATA <span class="text-gradient-violet">NEXUS</span></h2>
+                    <div class="nexus-controls">
+                        <button class="cyber-btn-outline" id="btn-upload-ach">
+                            <i class="fas fa-database"></i> INJECT LOG
+                        </button>
+                        <button class="cyber-btn-outline" id="btn-upload-img">
+                            <i class="fas fa-camera"></i> UPLOAD MEDIA
+                        </button>
+                        <input type="file" id="media-input" accept="image/*" style="display: none;">
+                    </div>
+                </div>
+
+                <div class="nexus-grid">
+                    <!-- Achievements Column -->
+                    <div class="nexus-column achievements-col reveal-scroll">
+                        <h3 class="font-orbitron sub-header"><i class="fas fa-list-ul"></i> MISSION LOGS</h3>
+                        <div class="cyber-timeline" id="achievements-container">
+                            <!-- Populated via JS -->
+                            <div class="empty-state">NO LOGS DETECTED.</div>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Column -->
+                    <div class="nexus-column gallery-col reveal-scroll reveal-delay-2">
+                        <h3 class="font-orbitron sub-header"><i class="fas fa-images"></i> VISUAL ARCHIVE</h3>
+                        <div class="cyber-gallery" id="gallery-container">
+                            <!-- Populated via JS -->
+                            <div class="empty-state">NO VISUALS RECORDED.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comms (Contact Form) -->
+        <section id="contact" class="section contact-section">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info reveal-scroll">
+                        <h2 class="font-orbitron section-title">SECURE <span class="text-gradient-cyan">COMMS</span>
+                        </h2>
+                        <p class="contact-desc">Link directly to our primary mainframe. Proposals, hackathon invites,
+                            and collab queries authorized.</p>
+
+                        <div class="comms-methods">
+                            <div class="comm-line">
+                                <div class="comm-icon bg-cyan-dim"><i class="fas fa-envelope text-cyan"></i></div>
+                                <div class="comm-data">
+                                    <span class="font-orbitron text-xs text-muted">PRIMARY FREQUENCY</span>
+                                    <span>teamastra03@gmail.com</span>
+                                </div>
+                            </div>
+                            <div class="comm-line">
+                                <div class="comm-icon bg-violet-dim"><i class="fab fa-instagram text-violet"></i></div>
+                                <div class="comm-data">
+                                    <span class="font-orbitron text-xs text-muted">SOCIAL UPLINK</span>
+                                    <a href="https://www.instagram.com/astra._.in" target="_blank"
+                                        class="cyber-link">@astra._.in</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-terminal reveal-scroll reveal-delay-2">
+                        <div class="terminal-header">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="terminal-title font-orbitron text-xs">ASTRA_TERMINAL_v2.0</span>
+                        </div>
+                        <form action="https://formsubmit.co/teamastra03@gmail.com" method="POST" class="cyber-form">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_subject" value="[ASTRA NEXUS] New Transmission">
+
+                            <div class="input-group">
+                                <input type="text" name="name" required class="cyber-input" placeholder=">> ENTER_ID">
+                            </div>
+                            <div class="input-group">
+                                <input type="email" name="email" required class="cyber-input"
+                                    placeholder=">> ENTER_ROUTING_EMAIL">
+                            </div>
+                            <div class="input-group">
+                                <textarea name="message" rows="4" required class="cyber-input"
+                                    placeholder=">> COMPILE_MESSAGE..."></textarea>
+                            </div>
+
+                            <button type="submit" class="cyber-btn btn-primary w-full">
+                                <span>EXECUTE TRANSMISSION</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="cyber-footer">
+            <div class="container text-center">
+                <div class="footer-logo font-orbitron">ASTRA <span class="text-cyan">///</span> 2026</div>
+                <div class="glitch-line"></div>
+                <p class="text-xs text-muted mt-4 tracking-widest">ARCHITECTING THE IMPOSSIBLE.</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Inject Modal -->
+    <div id="inject-modal" class="cyber-modal">
+        <div class="modal-box glass-panel-heavy">
+            <button class="close-modal"><i class="fas fa-times"></i></button>
+            <h3 class="font-orbitron text-cyan mb-4"><i class="fas fa-lock"></i> SYSTEM OVERRIDE: INJECT LOG</h3>
+            <form id="inject-form" class="cyber-form">
+                <div class="input-group">
+                    <label class="font-orbitron text-xs text-muted">LOG DESIGNATION</label>
+                    <input type="text" id="log-title" required class="cyber-input">
+                </div>
+                <div class="input-group">
+                    <label class="font-orbitron text-xs text-muted">TEMPORAL MARKER</label>
+                    <input type="date" id="log-date" required class="cyber-input">
+                </div>
+                <div class="input-group">
+                    <label class="font-orbitron text-xs text-muted">LOG DATA</label>
+                    <textarea id="log-desc" rows="3" required class="cyber-input"></textarea>
+                </div>
+                <button type="submit" class="cyber-btn btn-primary w-full mt-4">
+                    <span>COMMIT TO MATRIX</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Planet Modal overlay -->
+    <div id="planet-modal" class="cyber-modal">
+        <div class="modal-box glass-panel-heavy text-center planet-modal-box">
+            <button class="close-modal planet-modal-close"><i class="fas fa-times"></i></button>
+            <h3 class="font-orbitron text-cyan mb-4" id="planet-title">CATEGORY</h3>
+            <p class="text-muted" id="planet-desc">Relevant orbital information dynamically loaded here.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
