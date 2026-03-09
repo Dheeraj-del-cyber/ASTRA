@@ -349,11 +349,8 @@ body {
     font-size: 0.8rem;
     letter-spacing: 2px;
     position: relative;
-    padding: 12px 0; /* Increased for touch */
+    padding: 5px 0;
     transition: var(--transit);
-    min-height: 44px; /* Touch-friendly */
-    display: flex;
-    align-items: center;
 }
 
 .nav-item:hover {
@@ -375,9 +372,7 @@ body {
     box-shadow: 0 0 8px var(--c-cyan);
 }
 
-.mobile-toggle {
-    display: none;
-}
+/* Cyber Buttons */
 .cyber-btn {
     display: inline-flex;
     align-items: center;
@@ -757,8 +752,6 @@ body {
     /* Fixes cursor issue */
     pointer-events: auto;
     /* Restore clicks on the planet itself */
-    min-width: 44px; /* Touch-friendly minimum */
-    min-height: 44px;
 }
 
 /* Reverse rotation on satellite to keep tooltip upright */
@@ -1254,44 +1247,6 @@ body {
     .hero-title {
         font-size: 4rem;
     }
-
-    .container {
-        padding: 0 1.5rem;
-    }
-
-    .section {
-        padding: 80px 0;
-    }
-
-    .orbital-map-container {
-        width: 400px;
-        height: 400px;
-    }
-
-    .track-1 {
-        width: 150px;
-        height: 150px;
-    }
-
-    .track-2 {
-        width: 200px;
-        height: 200px;
-    }
-
-    .track-3 {
-        width: 250px;
-        height: 250px;
-    }
-
-    .track-4 {
-        width: 300px;
-        height: 300px;
-    }
-
-    .track-5 {
-        width: 350px;
-        height: 350px;
-    }
 }
 
 @media (max-width: 768px) {
@@ -1367,246 +1322,5 @@ body {
     .track-5 {
         width: 300px;
         height: 300px;
-    }
-
-    .hero-actions {
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-    }
-
-    .hero-subtitle {
-        font-size: 1rem;
-        margin-bottom: 2rem;
-    }
-
-    .section-title {
-        font-size: 2.5rem;
-    }
-
-    .nexus-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 2rem;
-    }
-
-    .nexus-controls {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .nexus-controls button {
-        width: 100%;
-    }
-
-    .contact-grid {
-        gap: 3rem;
-    }
-
-    .comms-methods {
-        gap: 1.5rem;
-    }
-
-    .cyber-form {
-        padding: 1.5rem;
-    }
-}
-
-@media (max-width: 576px) {
-    .container {
-        padding: 0 1rem;
-    }
-
-    .section {
-        padding: 60px 0;
-    }
-
-    .hero-title {
-        font-size: 3rem;
-    }
-
-    .hero-subtitle {
-        font-size: 0.95rem;
-        margin-bottom: 2rem;
-    }
-
-    .badge {
-        font-size: 0.6rem;
-        padding: 4px 10px;
-        margin-bottom: 1.5rem;
-    }
-
-    .section-title {
-        font-size: 2rem;
-        letter-spacing: 1px;
-    }
-
-    .neo-grid {
-        gap: 1.5rem;
-    }
-
-    .neo-card {
-        padding: 2rem;
-    }
-
-    .icon-wrapper {
-        font-size: 2rem;
-        margin-bottom: 1rem;
-    }
-
-    .card-title {
-        font-size: 1.1rem;
-    }
-
-    .card-desc {
-        font-size: 0.9rem;
-    }
-
-    .orbital-map-container {
-        width: 250px;
-        height: 250px;
-    }
-
-    .track-1 {
-        width: 80px;
-        height: 80px;
-    }
-
-    .track-2 {
-        width: 120px;
-        height: 120px;
-    }
-
-    .track-3 {
-        width: 160px;
-        height: 160px;
-    }
-
-    .track-4 {
-        width: 200px;
-        height: 200px;
-    }
-
-    .track-5 {
-        width: 240px;
-        height: 240px;
-    }
-
-    .satellite {
-        width: 24px;
-        height: 24px;
-    }
-
-    .sat-core {
-        width: 12px;
-        height: 12px;
-    }
-
-    .tech-tooltip {
-        font-size: 0.7rem;
-        padding: 4px 8px;
-        bottom: 25px;
-    }
-
-    .nexus-grid {
-        gap: 2rem;
-    }
-
-    .cyber-timeline {
-        padding-left: 15px;
-    }
-
-    .ach-item {
-        padding: 1.2rem;
-    }
-
-    .cyber-gallery {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-        gap: 0.8rem;
-    }
-
-    .contact-grid {
-        gap: 2rem;
-    }
-
-    .comm-line {
-        gap: 1rem;
-    }
-
-    .comm-icon {
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
-    }
-
-    .cyber-footer {
-        padding: 2rem 0;
-    }
-
-    .footer-logo {
-        font-size: 1.2rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero-title {
-        font-size: 2.5rem;
-    }
-
-    .hero-subtitle {
-        font-size: 0.9rem;
-    }
-
-    .section-title {
-        font-size: 1.8rem;
-    }
-
-    .orbital-map-container {
-        width: 200px;
-        height: 200px;
-    }
-
-    .track-1 {
-        width: 60px;
-        height: 60px;
-    }
-
-    .track-2 {
-        width: 90px;
-        height: 90px;
-    }
-
-    .track-3 {
-        width: 120px;
-        height: 120px;
-    }
-
-    .track-4 {
-        width: 150px;
-        height: 150px;
-    }
-
-    .track-5 {
-        width: 180px;
-        height: 180px;
-    }
-
-    .satellite {
-        width: 20px;
-        height: 20px;
-    }
-
-    .sat-core {
-        width: 10px;
-        height: 10px;
-    }
-
-    .cyber-gallery {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    }
-
-    .glass-panel-heavy {
-        padding: 1.5rem;
-        margin: 1rem;
     }
 }
