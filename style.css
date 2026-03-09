@@ -1324,3 +1324,332 @@ body {
         height: 300px;
     }
 }
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    .section {
+        padding: 80px 0;
+    }
+
+    .nav-container {
+        padding: 1rem;
+    }
+
+    .brand-text {
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .hero-actions .cyber-btn {
+        width: 100%;
+        max-width: 280px;
+        padding: 12px 20px;
+        font-size: 0.75rem;
+    }
+
+    .neo-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .neo-card {
+        padding: 1.5rem;
+    }
+
+    .card-title {
+        font-size: 1rem;
+    }
+
+    .card-desc {
+        font-size: 0.85rem;
+    }
+
+    .orbital-map-container {
+        width: 250px;
+        height: 250px;
+    }
+
+    .track-1 {
+        width: 80px;
+        height: 80px;
+    }
+
+    .track-2 {
+        width: 120px;
+        height: 120px;
+    }
+
+    .track-3 {
+        width: 160px;
+        height: 160px;
+    }
+
+    .track-4 {
+        width: 200px;
+        height: 200px;
+    }
+
+    .track-5 {
+        width: 240px;
+        height: 240px;
+    }
+
+    .center-core {
+        font-size: 0.8rem;
+    }
+
+    .tech-tooltip {
+        font-size: 0.7rem;
+        padding: 4px 8px;
+    }
+
+    .nexus-controls {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .cyber-btn-outline {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .nexus-column {
+        padding: 1.5rem;
+    }
+
+    .sub-header {
+        font-size: 1rem;
+    }
+
+    .contact-grid {
+        gap: 2rem;
+    }
+
+    .contact-info h2,
+    .contact-terminal h2 {
+        font-size: 1.5rem;
+    }
+
+    .contact-desc {
+        font-size: 0.9rem;
+    }
+
+    .comms-methods {
+        gap: 1rem;
+    }
+
+    .comm-line {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .terminal-header {
+        padding: 8px 12px;
+    }
+
+    .terminal-title {
+        font-size: 0.7rem;
+    }
+
+    .cyber-form .input-group {
+        margin-bottom: 1rem;
+    }
+
+    .cyber-input {
+        padding: 12px 16px;
+        font-size: 0.9rem;
+    }
+
+    .cyber-input::placeholder {
+        font-size: 0.8rem;
+    }
+
+    .footer-logo {
+        font-size: 1rem;
+    }
+
+    .glitch-line {
+        margin: 1rem 0;
+    }
+
+    .modal-box {
+        margin: 1rem;
+        padding: 1.5rem;
+        max-width: calc(100vw - 2rem);
+    }
+
+    .planet-modal-box {
+        text-align: center;
+    }
+
+    .cyber-input::placeholder {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .parallax-planet {
+        width: 90vw;
+        max-width: 400px;
+    }
+
+    .ambient-glow {
+        width: 300px;
+        height: 300px;
+        filter: blur(100px);
+    }
+
+    .top-left {
+        top: -150px;
+        left: -150px;
+    }
+
+    .bottom-right {
+        bottom: -150px;
+        right: -150px;
+    }
+
+    .radar-scan {
+        width: 120px;
+        height: 120px;
+    }
+
+    .loader-text-wrapper h1 {
+        font-size: 1.2rem;
+    }
+
+    .loader-sub {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.8rem;
+    }
+
+    .section-title {
+        font-size: 1.3rem;
+    }
+
+    .section-description {
+        font-size: 0.85rem;
+    }
+
+    .orbital-map-container {
+        width: 200px;
+        height: 200px;
+    }
+
+    .track-1 {
+        width: 60px;
+        height: 60px;
+    }
+
+    .track-2 {
+        width: 90px;
+        height: 90px;
+    }
+
+    .track-3 {
+        width: 120px;
+        height: 120px;
+    }
+
+    .track-4 {
+        width: 150px;
+        height: 150px;
+    }
+
+    .track-5 {
+        width: 180px;
+        height: 180px;
+    }
+
+    .center-core {
+        font-size: 0.7rem;
+    }
+
+    .tech-tooltip {
+        font-size: 0.65rem;
+        padding: 3px 6px;
+    }
+
+    .contact-info h2,
+    .contact-terminal h2 {
+        font-size: 1.3rem;
+    }
+
+    .cyber-btn {
+        padding: 14px 24px;
+        font-size: 0.7rem;
+        min-height: 44px;
+    }
+
+    .cyber-input {
+        padding: 14px 16px;
+        font-size: 0.85rem;
+        min-height: 44px;
+    }
+
+    .cyber-input::placeholder {
+        font-size: 0.75rem;
+    }
+
+    .parallax-planet {
+        width: 95vw;
+        max-width: 300px;
+    }
+
+    .ambient-glow {
+        width: 200px;
+        height: 200px;
+        filter: blur(80px);
+    }
+
+    .top-left {
+        top: -100px;
+        left: -100px;
+    }
+
+    .bottom-right {
+        bottom: -100px;
+        right: -100px;
+    }
+
+    .radar-scan {
+        width: 100px;
+        height: 100px;
+    }
+
+    .loader-text-wrapper h1 {
+        font-size: 1rem;
+    }
+
+    .loader-sub {
+        font-size: 0.65rem;
+    }
+}
