@@ -1422,6 +1422,7 @@ body {
 
     .hero-title {
         font-size: 4rem;
+        margin-left: -1rem;
     }
 
     .hero-subtitle {
@@ -1636,6 +1637,7 @@ body {
 @media (max-width: 360px) {
     .hero-title {
         font-size: 3rem;
+        margin-left: -1rem;
     }
 
     .hero-subtitle {
