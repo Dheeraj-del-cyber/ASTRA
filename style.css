@@ -237,40 +237,104 @@ body {
     transition: opacity 0.8s cubic-bezier(1, 0, 0, 1), visibility 0.8s;
 }
 
-.radar-scan {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 1px solid var(--c-cyan-dim);
+.loader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* ASTRA Letter A Drawing Animation */
+.astra-logo {
     position: relative;
-    overflow: hidden;
-    margin-bottom: 2rem;
-    box-shadow: 0 0 30px var(--c-cyan-dim);
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.radar-line {
+.astra-a-path {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 50%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--c-cyan));
-    transform-origin: left center;
-    animation: radar-spin 2s linear infinite;
+    stroke: var(--c-cyan);
+    stroke-width: 4;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 10px var(--c-cyan));
 }
 
-.radar-scan::after {
+.astra-a-path.left {
+    stroke-dasharray: 150;
+    stroke-dashoffset: 150;
+    animation: draw-left 2s ease-in-out infinite;
+}
+
+.astra-a-path.right {
+    stroke-dasharray: 150;
+    stroke-dashoffset: 150;
+    animation: draw-right 2s ease-in-out infinite 0.5s;
+}
+
+.astra-a-path.cross {
+    stroke-dasharray: 60;
+    stroke-dashoffset: 60;
+    animation: draw-cross 2s ease-in-out infinite 1s;
+}
+
+@keyframes draw-left {
+    0%, 20% {
+        stroke-dashoffset: 150;
+        opacity: 0;
+    }
+    40%, 100% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes draw-right {
+    0%, 40% {
+        stroke-dashoffset: 150;
+        opacity: 0;
+    }
+    60%, 100% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes draw-cross {
+    0%, 60% {
+        stroke-dashoffset: 60;
+        opacity: 0;
+    }
+    80%, 100% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+}
+
+/* Pulsing glow effect */
+.astra-logo::after {
     content: '';
     position: absolute;
-    inset: 0;
-    background: conic-gradient(from 0deg, transparent 70%, var(--c-cyan-dim) 100%);
-    animation: radar-spin 2s linear infinite;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
+    background: radial-gradient(circle, var(--c-cyan-dim) 0%, transparent 70%);
+    animation: logo-glow 3s ease-in-out infinite;
+    z-index: -1;
 }
 
-@keyframes radar-spin {
-    100% {
-        transform: rotate(360deg);
+@keyframes logo-glow {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.1);
     }
 }
 
@@ -494,11 +558,15 @@ body {
 }
 
 .hero-title {
-    font-size: clamp(3rem, 8vw, 6rem);
+    font-size: clamp(5rem, 12vw, 10rem);
     line-height: 1.1;
     letter-spacing: -2px;
     margin-bottom: 1.5rem;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 2rem;
 }
 
 .hero-subtitle {
@@ -511,6 +579,7 @@ body {
 .hero-actions {
     display: flex;
     gap: 1.5rem;
+    justify-content: center;
 }
 
 /* Scroll Prompt */
@@ -585,6 +654,13 @@ body {
 .section-description {
     color: var(--c-text-muted);
     max-width: 600px;
+}
+
+/* Desktop adjustments for section titles */
+@media (min-width: 769px) {
+    .section-title {
+        margin-left: 0;
+    }
 }
 
 /* Neo-Grid Cards (About) */
@@ -1246,7 +1322,7 @@ body {
     }
 
     .hero-title {
-        font-size: 4rem;
+        font-size: 6rem;
     }
 }
 
@@ -1296,33 +1372,33 @@ body {
     }
 
     .orbital-map-container {
-        width: 300px;
-        height: 300px;
+        width: 450px;
+        height: 450px;
     }
 
     .track-1 {
-        width: 100px;
-        height: 100px;
-    }
-
-    .track-2 {
         width: 150px;
         height: 150px;
     }
 
+    .track-2 {
+        width: 225px;
+        height: 225px;
+    }
+
     .track-3 {
-        width: 200px;
-        height: 200px;
+        width: 300px;
+        height: 300px;
     }
 
     .track-4 {
-        width: 250px;
-        height: 250px;
+        width: 375px;
+        height: 375px;
     }
 
     .track-5 {
-        width: 300px;
-        height: 300px;
+        width: 450px;
+        height: 450px;
     }
 }
 
@@ -1345,7 +1421,7 @@ body {
     }
 
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 4rem;
     }
 
     .hero-subtitle {
@@ -1384,33 +1460,33 @@ body {
     }
 
     .orbital-map-container {
-        width: 250px;
-        height: 250px;
+        width: 400px;
+        height: 400px;
     }
 
     .track-1 {
-        width: 80px;
-        height: 80px;
+        width: 130px;
+        height: 130px;
     }
 
     .track-2 {
-        width: 120px;
-        height: 120px;
+        width: 195px;
+        height: 195px;
     }
 
     .track-3 {
-        width: 160px;
-        height: 160px;
+        width: 260px;
+        height: 260px;
     }
 
     .track-4 {
-        width: 200px;
-        height: 200px;
+        width: 325px;
+        height: 325px;
     }
 
     .track-5 {
-        width: 240px;
-        height: 240px;
+        width: 390px;
+        height: 390px;
     }
 
     .center-core {
@@ -1541,11 +1617,25 @@ body {
     .loader-sub {
         font-size: 0.7rem;
     }
+
+    .astra-logo {
+        width: 150px;
+        height: 150px;
+    }
+
+    .astra-logo svg {
+        width: 150px;
+        height: 150px;
+    }
+
+    .astra-a-path {
+        stroke-width: 3;
+    }
 }
 
 @media (max-width: 360px) {
     .hero-title {
-        font-size: 2rem;
+        font-size: 3rem;
     }
 
     .hero-subtitle {
@@ -1561,33 +1651,33 @@ body {
     }
 
     .orbital-map-container {
-        width: 200px;
-        height: 200px;
+        width: 350px;
+        height: 350px;
     }
 
     .track-1 {
-        width: 60px;
-        height: 60px;
+        width: 115px;
+        height: 115px;
     }
 
     .track-2 {
-        width: 90px;
-        height: 90px;
+        width: 170px;
+        height: 170px;
     }
 
     .track-3 {
-        width: 120px;
-        height: 120px;
+        width: 225px;
+        height: 225px;
     }
 
     .track-4 {
-        width: 150px;
-        height: 150px;
+        width: 280px;
+        height: 280px;
     }
 
     .track-5 {
-        width: 180px;
-        height: 180px;
+        width: 335px;
+        height: 335px;
     }
 
     .center-core {
@@ -1652,5 +1742,19 @@ body {
 
     .loader-sub {
         font-size: 0.65rem;
+    }
+
+    .astra-logo {
+        width: 120px;
+        height: 120px;
+    }
+
+    .astra-logo svg {
+        width: 120px;
+        height: 120px;
+    }
+
+    .astra-a-path {
+        stroke-width: 2.5;
     }
 }
