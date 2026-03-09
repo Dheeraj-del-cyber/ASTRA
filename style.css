@@ -1609,9 +1609,4 @@ body {
         padding: 1.5rem;
         margin: 1rem;
     }
-
-    /* Hide parallax planet on very small screens to improve performance and UX */
-    .parallax-planet {
-        display: none;
-    }
 }
