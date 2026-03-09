@@ -40,8 +40,10 @@ function initCanvas() {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
     stars = [];
+    // Create stars based on screen size for performance
+    const starCount = width < 768 ? 150 : 300; // Fewer stars on mobile
     // Create 3 layers of stars for depth
-    for (let i = 0; i < 300; i++) {
+    for (let i = 0; i < starCount; i++) {
         stars.push({
             x: Math.random() * width,
             y: Math.random() * height,
