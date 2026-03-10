@@ -7,17 +7,28 @@ window.addEventListener('load', () => {
     const texts = ["SYSTEM MOUNTING", "DECRYPTING PROTOCOLS", "ACCESS GRANTED"];
     let i = 0;
 
+    // Prevent null pointer if template doesn't include loader text (legacy/fallback state)
+    if (loaderText) {
+        loaderText.setAttribute('data-text', texts[0]);
+        loaderText.innerText = texts[0];
+    }
+
     const textInterval = setInterval(() => {
         i++;
         if (i < texts.length) {
-            loaderText.setAttribute('data-text', texts[i]);
-            loaderText.innerText = texts[i];
+            if (loaderText) {
+                loaderText.setAttribute('data-text', texts[i]);
+                loaderText.innerText = texts[i];
+            }
         } else {
             clearInterval(textInterval);
-            document.getElementById('loader').style.opacity = '0';
-            setTimeout(() => {
-                document.getElementById('loader').style.display = 'none';
-            }, 800);
+            const loader = document.getElementById('loader');
+            if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 800);
+            }
         }
     }, 600); // Sequence timing
 });
