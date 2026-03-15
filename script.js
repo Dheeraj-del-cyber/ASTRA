@@ -2,36 +2,18 @@
 // 1. BOOT SEQUENCE & SECURE UI LOGIC
 // ==========================================
 window.addEventListener('load', () => {
-    // Advanced Cyber Loader Logic
-    const loaderText = document.querySelector('.cyber-glitch');
-    const texts = ["SYSTEM MOUNTING", "DECRYPTING PROTOCOLS", "ACCESS GRANTED"];
-    let i = 0;
-
-    // Prevent null pointer if template doesn't include loader text (legacy/fallback state)
-    if (loaderText) {
-        loaderText.setAttribute('data-text', texts[0]);
-        loaderText.innerText = texts[0];
-    }
-
-    const textInterval = setInterval(() => {
-        i++;
-        if (i < texts.length) {
-            if (loaderText) {
-                loaderText.setAttribute('data-text', texts[i]);
-                loaderText.innerText = texts[i];
-            }
-        } else {
-            clearInterval(textInterval);
-            const loader = document.getElementById('loader');
-            if (loader) {
-                loader.style.opacity = '0';
-                setTimeout(() => {
-                    loader.style.display = 'none';
-                }, 800);
-            }
+    // Premium Logo Loader Logic
+    setTimeout(() => {
+        const loader = document.getElementById('loader');
+        if (loader) {
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 1000);
         }
-    }, 600); // Sequence timing
+    }, 3500); // Allow time for the light sweep animation
 });
+
 
 // Admin Password Core
 function isAuthorized() {
@@ -222,7 +204,8 @@ const achievementsContainer = document.getElementById('achievements-container');
 const btnUploadAch = document.getElementById('btn-upload-ach');
 const injectModal = document.getElementById('inject-modal');
 const injectForm = document.getElementById('inject-form');
-const closeInject = document.querySelector('.close-modal');
+const closeInject = document.getElementById('inject-close');
+const injectCancelBtn = document.getElementById('inject-cancel');
 
 let achievements = JSON.parse(localStorage.getItem('astra_logs')) || [];
 
@@ -265,11 +248,8 @@ function renderAchievements() {
     });
 }
 
-btnUploadAch.addEventListener('click', () => {
-    if (isAuthorized()) injectModal.classList.add('show');
-});
-
-closeInject.addEventListener('click', () => injectModal.classList.remove('show'));
+if (closeInject) closeInject.addEventListener('click', () => injectModal.classList.remove('show'));
+if (injectCancelBtn) injectCancelBtn.addEventListener('click', () => injectModal.classList.remove('show'));
 
 injectForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -321,26 +301,107 @@ function renderGallery() {
     });
 }
 
+const passwordModal = document.getElementById('password-modal');
+const passwordInput = document.getElementById('password-input');
+const passwordOkBtn = document.getElementById('password-ok');
+const passwordCancelBtn = document.getElementById('password-cancel');
+const passwordClose = document.getElementById('password-close');
+
+let passwordAction = null; // 'upload' | 'inject'
+
 btnUploadImg.addEventListener('click', () => {
-    if (isAuthorized()) mediaInput.click();
+    if (!passwordModal || !passwordInput) return;
+
+    passwordAction = 'upload';
+    passwordInput.value = '';
+    passwordModal.classList.add('show');
+    passwordInput.focus();
+});
+
+btnUploadAch.addEventListener('click', () => {
+    if (!passwordModal || !passwordInput) return;
+
+    passwordAction = 'inject';
+    passwordInput.value = '';
+    passwordModal.classList.add('show');
+    passwordInput.focus();
+});
+
+const closePasswordModal = () => {
+    if (passwordModal) passwordModal.classList.remove('show');
+};
+
+passwordCancelBtn.addEventListener('click', () => {
+    closePasswordModal();
+    passwordAction = null;
+});
+
+passwordClose.addEventListener('click', () => {
+    closePasswordModal();
+    passwordAction = null;
+});
+
+passwordInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        passwordOkBtn.click();
+    }
+});
+
+const fallbackButton = document.getElementById('media-pick-fallback');
+
+fallbackButton.addEventListener('click', () => {
+    mediaInput.click();
+});
+
+passwordOkBtn.addEventListener('click', () => {
+    if (passwordInput.value === 'ASTRA9148') {
+        const currentAction = passwordAction;
+        closePasswordModal();
+        passwordAction = null;
+
+        if (currentAction === 'upload') {
+            try {
+                mediaInput.click();
+                // Show fallback button in case browser blocks the direct click
+                fallbackButton.style.display = 'inline-flex';
+            } catch (err) {
+                console.warn('Direct file dialog click blocked, show fallback button', err);
+                fallbackButton.style.display = 'inline-flex';
+            }
+        } else if (currentAction === 'inject') {
+            injectModal.classList.add('show');
+        }
+    } else {
+        alert('Incorrect password. Access denied.');
+        passwordInput.focus();
+    }
 });
 
 mediaInput.addEventListener('change', function () {
-    const file = this.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            try {
-                visuals.push({ id: Date.now(), img: e.target.result });
-                localStorage.setItem('astra_visuals', JSON.stringify(visuals));
-                renderGallery();
-            } catch (err) {
-                alert("MATRIX STORAGE FULL. LocalStorage API limit reached.");
-                console.error(err);
-            }
-        }
-        reader.readAsDataURL(file);
+    if (fallbackButton) {
+        fallbackButton.style.display = 'none';
     }
+    const file = this.files[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+        alert('Please select a valid image file (JPEG/PNG/GIF).');
+        mediaInput.value = '';
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        try {
+            visuals.push({ id: Date.now(), img: e.target.result });
+            localStorage.setItem('astra_visuals', JSON.stringify(visuals));
+            renderGallery();
+        } catch (err) {
+            alert("MATRIX STORAGE FULL. LocalStorage API limit reached.");
+            console.error(err);
+        }
+    };
+    reader.readAsDataURL(file);
 });
 
 // Initial Render Calls

@@ -17,24 +17,15 @@
 
 <body>
 
-    <!-- Cyber/Radar Boot Loader -->
+    <!-- Premium Logo Loader -->
     <div id="loader" class="cyber-loader">
         <div class="loader-content">
-            <div class="astra-logo">
-                <svg width="200" height="200" viewBox="0 0 200 200">
-                    <!-- Left diagonal line of A -->
-                    <path class="astra-a-path left" d="M50 150 L100 50 L120 50 L70 150 Z" />
-                    <!-- Right diagonal line of A -->
-                    <path class="astra-a-path right" d="M130 150 L100 50 L120 50 L160 150 Z" />
-                    <!-- Horizontal crossbar of A -->
-                    <path class="astra-a-path cross" d="M75 110 L135 110" />
-                </svg>
-            </div>
-            <div class="loader-text-wrapper">
-                <h2 class="cyber-glitch">SYSTEM MOUNTING</h2>
-            </div>
+            <img src="astra_logo_premium.png" alt="ASTRA Logo" class="premium-logo">
+            <div class="light-sweep"></div>
         </div>
     </div>
+
+
 
     <!-- Background Layer -->
     <canvas id="starfield"></canvas>
@@ -81,13 +72,13 @@
             <div class="container hero-container grid-overlay">
                 <div class="hero-content reveal-on-load">
                     <div class="badge glow-border">
-                        
+
                     </div>
                     <h1 class="hero-title font-orbitron">
                         <span>TEAM</span>
                         <span class="text-gradient-cyan">ASTRA</span>
                     </h1>
-                   
+
                     <div class="hero-actions">
                         <a href="#about" class="cyber-btn btn-primary">
                             <span>INITIATE SEQUENCE</span>
@@ -222,7 +213,11 @@
                         <button class="cyber-btn-outline" id="btn-upload-img">
                             <i class="fas fa-camera"></i> UPLOAD MEDIA
                         </button>
-                        <input type="file" id="media-input" accept="image/*" style="display: none;">
+                        <button class="cyber-btn-outline" id="media-pick-fallback"
+                            style="display: none; margin-left: 0.75rem;">SELECT IMAGE</button>
+                        <input type="file" id="media-input" accept="image/*"
+                            style="position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0;"
+                            tabindex="-1">
                     </div>
                 </div>
 
@@ -321,10 +316,24 @@
 
     </div>
 
+    <!-- Password Modal (used by upload and log) -->
+    <div id="password-modal" class="cyber-modal">
+        <div class="modal-box glass-panel-heavy">
+            <button class="close-modal" id="password-close"><i class="fas fa-times"></i></button>
+            <h3 class="font-orbitron text-cyan mb-4"><i class="fas fa-lock"></i> ENTER PASSCODE</h3>
+            <p class="text-muted mb-4">Enter your secure passcode to continue.</p>
+            <input type="password" id="password-input" class="cyber-input" placeholder="Passcode" autocomplete="off" />
+            <div class="nexus-controls mt-3">
+                <button class="cyber-btn-outline" id="password-cancel">CANCEL</button>
+                <button class="cyber-btn btn-primary" id="password-ok">SUBMIT</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Inject Modal -->
     <div id="inject-modal" class="cyber-modal">
         <div class="modal-box glass-panel-heavy">
-            <button class="close-modal"><i class="fas fa-times"></i></button>
+            <button class="close-modal" id="inject-close"><i class="fas fa-times"></i></button>
             <h3 class="font-orbitron text-cyan mb-4"><i class="fas fa-lock"></i> SYSTEM OVERRIDE: INJECT LOG</h3>
             <form id="inject-form" class="cyber-form">
                 <div class="input-group">
@@ -339,9 +348,12 @@
                     <label class="font-orbitron text-xs text-muted">LOG DATA</label>
                     <textarea id="log-desc" rows="3" required class="cyber-input"></textarea>
                 </div>
-                <button type="submit" class="cyber-btn btn-primary w-full mt-4">
-                    <span>COMMIT TO MATRIX</span>
-                </button>
+                <div class="nexus-controls mt-4">
+                    <button type="button" class="cyber-btn-outline" id="inject-cancel">CANCEL</button>
+                    <button type="submit" class="cyber-btn btn-primary">
+                        <span>COMMIT TO MATRIX</span>
+                    </button>
+                </div>
             </form>
         </div>
     </div>
