@@ -5,21 +5,57 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- Preloader ---
+    // --- Preloader & Initialization Video ---
     const preloader = document.getElementById('preloader');
-    window.addEventListener('load', () => {
+    const initVideo = document.getElementById('init-video');
+    const startOverlay = document.getElementById('start-overlay');
+    
+    // Pulse animation keyframes for the text
+    const styleSheet = document.createElement('style');
+    styleSheet.innerText = `@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }`;
+    document.head.appendChild(styleSheet);
+
+    let isInitComplete = false;
+
+    const finishInitialization = () => {
+        isInitComplete = true; // Mark system as active
+        preloader.style.transition = 'opacity 0.8s ease';
+        preloader.style.opacity = '0';
         setTimeout(() => {
-            preloader.style.opacity = '0';
-            setTimeout(() => {
-                preloader.style.display = 'none';
-                // Trigger hero animations after preloader
-                document.querySelector('.hero-content').classList.add('start-animation');
-            }, 500);
-        }, 2000); // 2 seconds for that Avengers-style feel
-    });
+            preloader.style.display = 'none';
+            document.querySelector('.hero-content').classList.add('start-animation');
+            
+            // Start background music now that initialization has ended
+            startAudioOnInteraction();
+        }, 800);
+    };
+
+    if (startOverlay && initVideo) {
+        startOverlay.addEventListener('click', () => {
+            startOverlay.style.display = 'none'; // Hide overlay
+            initVideo.style.display = 'block'; // Show video
+            
+            initVideo.play().then(() => {
+                // Video is playing
+                initVideo.onended = () => {
+                    finishInitialization();
+                };
+            }).catch(err => {
+                console.log("Initialization video failed:", err);
+                finishInitialization(); // Fallback
+            });
+        });
+    } else {
+        // Fallback for missing elements
+        window.addEventListener('load', () => {
+            setTimeout(finishInitialization, 1000);
+        });
+    }
 
     // --- Global User Interaction to Play Sound ---
     const startAudioOnInteraction = () => {
+        if (!isInitComplete) return; // Prevent background music from overlapping the initialization video!
+
         if (!isPlaying) {
             const playPromise = bgMusic.play();
             if (playPromise !== undefined) {
