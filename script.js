@@ -21,22 +21,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Global User Interaction to Play Sound ---
     const startAudioOnInteraction = () => {
         if (!isPlaying) {
-            bgMusic.play().then(() => {
-                isPlaying = true;
-                soundIcon.classList.remove('fa-volume-mute');
-                soundIcon.classList.add('fa-volume-up');
-                soundToggle.style.borderColor = 'var(--primary-blue)';
-                // heroVideo.muted = false; // Keep video muted to prevent overlapping audio
-                console.log("Audio sequence initiated via user interaction.");
-            }).catch(err => console.log("Interaction playback failed:", err));
+            const playPromise = bgMusic.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    isPlaying = true;
+                    soundIcon.classList.remove('fa-volume-mute');
+                    soundIcon.classList.add('fa-volume-up');
+                    soundToggle.style.borderColor = 'var(--primary-blue)';
+                    // heroVideo.muted = false; // Keep video muted to prevent overlapping audio
+                    console.log("Audio sequence initiated via user interaction.");
+                    
+                    // Remove listeners ONLY after successful playback
+                    document.removeEventListener('click', startAudioOnInteraction);
+                    document.removeEventListener('touchstart', startAudioOnInteraction);
+                    document.removeEventListener('touchend', startAudioOnInteraction);
+                }).catch(err => console.log("Interaction playback failed, waiting for next touch:", err));
+            }
         }
-        // Remove listeners after first interaction
-        document.removeEventListener('click', startAudioOnInteraction);
-        document.removeEventListener('touchstart', startAudioOnInteraction);
     };
 
     document.addEventListener('click', startAudioOnInteraction);
     document.addEventListener('touchstart', startAudioOnInteraction);
+    document.addEventListener('touchend', startAudioOnInteraction);
 
     // --- Navbar Scroll Effect ---
     const navbar = document.getElementById('navbar');
