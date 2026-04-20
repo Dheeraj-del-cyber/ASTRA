@@ -231,10 +231,10 @@
 
     </div> <!-- End Page Wrapper -->
 
-    <!-- Audio Element (Background Music) -->
-    <audio id="bg-music" loop preload="auto" style="display: none;">
-        <source src="song/WhatsApp Video 2026-04-20 at 10.50.30 PM.mp4">
-    </audio>
+    <!-- Background Music (Using <video> for better .mp4 fallback on mobile) -->
+    <video id="bg-music" loop playsinline preload="auto" style="position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; z-index: -1;">
+        <source src="song/WhatsApp Video 2026-04-20 at 10.50.30 PM.mp4" type="video/mp4">
+    </video>
 
     <!-- Liquid Metal Ripple Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -334,16 +334,21 @@
 
             // 2. Dual Play - Explicitly start both to satisfy Instagram/Mobile policies
             if (teamInitVideo) {
-                teamInitVideo.muted = true; // Stay muted for video
-                teamInitVideo.play().catch(e => console.log("Video fail:", e));
+                teamInitVideo.muted = true;
+                teamInitVideo.play().catch(e => console.log("Init video fail:", e));
             }
 
             if (bgMusic) {
-                bgMusic.muted = false;
+                bgMusic.muted = false; // Important: Unmute for audio
                 bgMusic.volume = 1.0;
+                
+                // Force a reload to ensure fresh playback state if needed
+                if (bgMusic.readyState === 0) bgMusic.load(); 
+                
                 bgMusic.play().then(() => {
                     isMusicPlaying = true;
                     updateSoundIcon();
+                    console.log("Initialization music started successfully.");
                 }).catch(e => {
                     console.log("Music fail:", e);
                 });
