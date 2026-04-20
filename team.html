@@ -23,8 +23,8 @@
 
     <!-- Team Initialization Video Overlay -->
     <div id="team-init-overlay" style="position: fixed; inset: 0; z-index: 100000; background: #000; display: flex; justify-content: center; align-items: center; overflow: hidden;">
-        <!-- Fullscreen Video (Autoplay with Sound) -->
-        <video id="team-init-video" autoplay playsinline style="width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; z-index: 100001; pointer-events: none;">
+        <!-- Fullscreen Video (Muted by default) -->
+        <video id="team-init-video" autoplay muted playsinline style="width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; z-index: 100001; pointer-events: none;">
             <source src="team initialization/InShot_20260420_103519614.mp4" type="video/mp4">
         </video>
 
@@ -231,7 +231,7 @@
 
     <!-- Audio Element (Background Music) -->
     <audio id="bg-music" loop style="display: none;">
-        <source src="song/WhatsApp Audio 2026-04-20 at 12.04.39 PM.mp4" type="video/mp4">
+        <source src="song/WhatsApp Video 2026-04-20 at 10.50.30 PM.mp4" type="video/mp4">
     </audio>
 
     <!-- Liquid Metal Ripple Scripts -->
@@ -304,11 +304,13 @@
                 teamInitVideo.load();
             }
             
-            // Play background music
-            if (bgMusic) {
+            // Background music should already be playing, but ensure it is
+            if (bgMusic && bgMusic.paused) {
                 bgMusic.play().then(() => {
                     updateSoundIcon();
                 }).catch(e => console.log("Background music blocked until interaction."));
+            } else {
+                updateSoundIcon();
             }
             
             setTimeout(() => {
@@ -328,20 +330,14 @@
             const silent = new Audio("data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA== ");
             silent.play().catch(() => {});
 
-            if (teamInitVideo) {
-                // 2. Explcitly unmute and set volume
-                teamInitVideo.muted = false;
-                teamInitVideo.volume = 1.0;
-                
-                // 3. Force playback resume
-                const playRequest = teamInitVideo.play();
-                if (playRequest !== undefined) {
-                    playRequest.catch(() => {
-                        console.log("Unmuted play blocked even on touch. Using muted fallback.");
-                        teamInitVideo.muted = true;
-                        teamInitVideo.play();
-                    });
-                }
+            if (bgMusic) {
+                // 2. Play background music
+                bgMusic.play().then(() => {
+                    isMusicPlaying = true;
+                    updateSoundIcon();
+                }).catch(e => {
+                    console.log("Background music playback failed:", e);
+                });
             }
             
             // Cleanup
@@ -367,18 +363,16 @@
 
         // Auto-play attempt
         window.addEventListener('load', () => {
-            // Attempt unmuted play (Relies on user interaction from previous page)
-            const playPromise = teamInitVideo.play();
+            // Video plays automatically muted
+            teamInitVideo.play();
             
-            if (playPromise !== undefined) {
-                playPromise.then(_ => {
-                    // Autoplay with sound started!
-                    console.log("Unmuted autoplay successful.");
-                }).catch(error => {
-                    // Autoplay with sound was prevented
-                    console.log("Unmuted autoplay blocked by browser. Falling back to muted.");
-                    teamInitVideo.muted = true;
-                    teamInitVideo.play();
+            // Attempt to play background music (will likely be blocked until first click)
+            if (bgMusic) {
+                bgMusic.play().then(() => {
+                    isMusicPlaying = true;
+                    updateSoundIcon();
+                }).catch(() => {
+                    console.log("Background music autoplay blocked. Waiting for user interaction.");
                 });
             }
         });
