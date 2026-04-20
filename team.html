@@ -29,7 +29,9 @@
         </video>
 
         <!-- Invisible Audio Unlocker -->
-        <div id="audio-unlocker" style="position: absolute; inset: 0; z-index: 100002; cursor: pointer;"></div>
+        <div id="audio-unlocker" style="position: absolute; inset: 0; z-index: 100002; cursor: pointer;">
+            <p id="tap-to-start-msg" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: rgba(255,255,255,0.4); font-family: 'Poppins', sans-serif; letter-spacing: 5px; text-transform: uppercase; font-size: 0.8rem; pointer-events: none; opacity: 0; transition: opacity 0.5s ease;">Tap to Initialize</p>
+        </div>
         
         <button id="skip-team-init"
             style="position: absolute; bottom: 40px; right: 40px; z-index: 100003; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 12px 25px; cursor: pointer; border-radius: 30px; font-family: 'Poppins', sans-serif; backdrop-filter: blur(10px); letter-spacing: 2px; transition: 0.3s; text-transform: uppercase; font-size: 0.8rem;">Skip Intro</button>
@@ -330,8 +332,13 @@
             const silent = new Audio("data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA== ");
             silent.play().catch(() => {});
 
+            // 2. Play initialization video (fallback for blocked autoplay)
+            if (teamInitVideo) {
+                teamInitVideo.play().catch(e => console.log("Video play failed on click:", e));
+            }
+
             if (bgMusic) {
-                // 2. Play background music
+                // 3. Play background music
                 bgMusic.play().then(() => {
                     isMusicPlaying = true;
                     updateSoundIcon();
@@ -363,8 +370,15 @@
 
         // Auto-play attempt
         window.addEventListener('load', () => {
-            // Video plays automatically muted
-            teamInitVideo.play();
+            const tapMsg = document.getElementById('tap-to-start-msg');
+            
+            // Attempt to play background video
+            teamInitVideo.play().then(() => {
+                console.log("Muted autoplay sequence started.");
+            }).catch(error => {
+                console.log("Autoplay blocked. Showing tap-to-start message.");
+                if (tapMsg) tapMsg.style.opacity = '1';
+            });
             
             // Attempt to play background music (will likely be blocked until first click)
             if (bgMusic) {
@@ -372,7 +386,7 @@
                     isMusicPlaying = true;
                     updateSoundIcon();
                 }).catch(() => {
-                    console.log("Background music autoplay blocked. Waiting for user interaction.");
+                    // This is expected to be blocked; the audioUnlocker will handle it
                 });
             }
         });
