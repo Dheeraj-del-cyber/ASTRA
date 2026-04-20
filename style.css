@@ -353,12 +353,13 @@ body {
 
 /* Hero Content Update */
 .hero-logo-container {
+    margin-top: 50px;
     margin-bottom: 20px;
     animation: heroFadeIn 1.5s ease-out;
 }
 
 .hero-logo {
-    max-width: 800px; /* Slightly increased size */
+    max-width: 600px; /* Reduced size */
     height: auto;
     opacity: 0.85; 
     mix-blend-mode: normal; 
@@ -369,15 +370,15 @@ body {
 
 .tagline {
     font-family: var(--font-header);
-    font-size: 1.2rem; 
-    letter-spacing: 8px; 
-    color: #ffffff; /* Forced pure white to ensure it is visible */
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8); /* Ensures it pops over any bright video spots */
-    margin-top: 0px; 
-    margin-bottom: 40px;
+    font-size: 2rem;
+    letter-spacing: 12px;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255,255,255,0.3), 0 0 20px rgba(0,0,0,0.8);
+    margin-top: 10px;
+    margin-bottom: 50px;
     text-transform: uppercase;
     position: relative;
-    z-index: 20; /* Keep it securely above all backgrounds and overlays */
+    z-index: 20;
     animation: heroFadeIn 1.5s ease-out 0.5s both;
 }
 
@@ -725,7 +726,7 @@ body {
     grid-template-columns: 1fr 1fr;
     gap: 30px;
     width: 100%;
-    max-width: 800px;
+    max-width: 600px;
 }
 
 .contact-card {
@@ -894,7 +895,7 @@ body {
 
 /* Responsive */
 @media (max-width: 992px) {
-    .hero-logo { max-width: 80vw; } 
+    .hero-logo { max-width: 70vw; } 
     .about-grid { grid-template-columns: 1fr; }
     
     /* Transparent fully animated mobile menu */
@@ -924,23 +925,39 @@ body {
 }
 
 @media (max-width: 768px) {
-    .hero-logo { max-width: 90vw; }
-    .tagline { 
-        font-size: 0.9rem; 
-        letter-spacing: 4px; 
-        margin-bottom: 30px; 
-        padding: 0 10px;
-    }
+    .hero-logo { max-width: 80vw; }
+    .tagline {
+    font-family: var(--font-header);
+    font-size: 2rem;
+    letter-spacing: 12px;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255,255,255,0.3), 0 0 20px rgba(0,0,0,0.8);
+    margin-top: 10px;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 20;
+    animation: heroFadeIn 1.5s ease-out 0.5s both;
+}
     .contact-info { grid-template-columns: 1fr; }
     .container { padding: 0 1.5rem; }
 }
 
 @media (max-width: 480px) {
-    .hero-logo { max-width: 95vw; }
-    .tagline { 
-        font-size: 0.8rem; 
-        letter-spacing: 3px; 
-    }
+    .hero-logo { max-width: 85vw; }
+    .tagline {
+    font-family: var(--font-header);
+    font-size: 2rem;
+    letter-spacing: 12px;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255,255,255,0.3), 0 0 20px rgba(0,0,0,0.8);
+    margin-top: 10px;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 20;
+    animation: heroFadeIn 1.5s ease-out 0.5s both;
+}
     .btn-glow {
         padding: 12px 30px;
         font-size: 0.9rem;
