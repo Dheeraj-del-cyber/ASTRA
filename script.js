@@ -37,6 +37,14 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Unmute and handle audio sequence
             startAudioOnInteraction();
+            
+            // CLEANUP: Kill the intro video to save memory/prevent lag
+            if (initVideo) {
+                initVideo.pause();
+                initVideo.src = "";
+                initVideo.load();
+                initVideo.remove(); // Remove from DOM entirely
+            }
         }, 800);
     };
 

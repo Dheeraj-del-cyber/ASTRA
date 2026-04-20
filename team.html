@@ -304,6 +304,7 @@
                 teamInitVideo.currentTime = 0; // Reset
                 teamInitVideo.src = ""; // Clear src to be absolutely sure
                 teamInitVideo.load();
+                teamInitVideo.remove();
             }
             
             // Background music should already be playing, but ensure it is
