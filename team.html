@@ -28,13 +28,13 @@
             <source src="team initialization/InShot_20260420_103519614.mp4" type="video/mp4">
         </video>
 
-        <!-- Invisible Audio Unlocker -->
-        <div id="audio-unlocker" style="position: absolute; inset: 0; z-index: 100002; cursor: pointer;">
-            <p id="tap-to-start-msg" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: rgba(255,255,255,0.4); font-family: 'Poppins', sans-serif; letter-spacing: 5px; text-transform: uppercase; font-size: 0.8rem; pointer-events: none; opacity: 0; transition: opacity 0.5s ease;">Tap to Initialize</p>
+        <!-- Minimal Audio Unlocker (Bottom Right) -->
+        <div id="audio-unlocker" style="position: absolute; bottom: 40px; right: 40px; z-index: 100002; cursor: pointer;">
+            <button id="start-init-btn" title="Enable Sound & Start" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: #fff; width: 55px; height: 55px; cursor: pointer; border-radius: 50%; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px); transition: 0.4s; font-size: 1.1rem; box-shadow: 0 0 20px rgba(0,0,0,0.4);">
+                <i class="fas fa-volume-mute"></i>
+            </button>
         </div>
         
-        <button id="skip-team-init"
-            style="position: absolute; bottom: 40px; right: 40px; z-index: 100003; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 12px 25px; cursor: pointer; border-radius: 30px; font-family: 'Poppins', sans-serif; backdrop-filter: blur(10px); letter-spacing: 2px; transition: 0.3s; text-transform: uppercase; font-size: 0.8rem;">Skip Intro</button>
         <p style="position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); font-size: 0.65rem; color: rgba(255,255,255,0.2); font-family: 'Poppins', sans-serif; text-transform: uppercase; letter-spacing: 5px; z-index: 100004; pointer-events: none;">Theme: Avengers</p>
     </div>
 
@@ -375,26 +375,33 @@
         teamInitVideo.onended = exitTeamIntro;
         skipBtn.onclick = exitTeamIntro;
 
+        // Start Button Hover Effects
+        const startInitBtn = document.getElementById('start-init-btn');
+        const btnGlint = document.getElementById('btn-glint');
+        
+        if (startInitBtn) {
+            startInitBtn.onmouseenter = () => {
+                startInitBtn.style.background = 'rgba(255,255,255,0.2)';
+                startInitBtn.style.borderColor = 'rgba(255,255,255,0.6)';
+                startInitBtn.style.transform = 'scale(1.1) rotate(5deg)';
+            };
+            startInitBtn.onmouseleave = () => {
+                startInitBtn.style.background = 'rgba(255,255,255,0.1)';
+                startInitBtn.style.borderColor = 'rgba(255,255,255,0.3)';
+                startInitBtn.style.transform = 'scale(1) rotate(0deg)';
+            };
+        }
+
         // Auto-play attempt
         window.addEventListener('load', () => {
-            const tapMsg = document.getElementById('tap-to-start-msg');
-            
-            // Attempt to play background video
-            teamInitVideo.play().then(() => {
-                console.log("Muted autoplay sequence started.");
-            }).catch(error => {
-                console.log("Autoplay blocked. Showing tap-to-start message.");
-                if (tapMsg) tapMsg.style.opacity = '1';
+            // Attempt to play background video (muted)
+            teamInitVideo.play().catch(() => {
+                console.log("Autoplay blocked - waiting for manual start.");
             });
             
-            // Attempt to play background music (will likely be blocked until first click)
+            // Warm up background music
             if (bgMusic) {
-                bgMusic.play().then(() => {
-                    isMusicPlaying = true;
-                    updateSoundIcon();
-                }).catch(() => {
-                    // This is expected to be blocked; the audioUnlocker will handle it
-                });
+                bgMusic.load();
             }
         });
 
