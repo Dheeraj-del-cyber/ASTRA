@@ -149,7 +149,7 @@ body {
 
 .logo-text {
     font-family: var(--font-header);
-    font-size: 2rem;
+    font-size: 1.4rem;
     letter-spacing: 5px;
     margin-top: 20px;
     text-shadow: 0 0 10px var(--primary-blue);
@@ -370,8 +370,8 @@ body {
 
 .tagline {
     font-family: var(--font-header);
-    font-size: 2rem;
-    letter-spacing: 12px;
+    font-size: 1.4rem;
+    letter-spacing: 10px;
     color: #ffffff;
     text-shadow: 0 0 10px rgba(255,255,255,0.3), 0 0 20px rgba(0,0,0,0.8);
     margin-top: 10px;
@@ -928,8 +928,8 @@ body {
     .hero-logo { max-width: 80vw; }
     .tagline {
     font-family: var(--font-header);
-    font-size: 2rem;
-    letter-spacing: 12px;
+    font-size: 1.4rem;
+    letter-spacing: 10px;
     color: #ffffff;
     text-shadow: 0 0 10px rgba(255,255,255,0.3), 0 0 20px rgba(0,0,0,0.8);
     margin-top: 10px;
@@ -947,8 +947,8 @@ body {
     .hero-logo { max-width: 85vw; }
     .tagline {
     font-family: var(--font-header);
-    font-size: 2rem;
-    letter-spacing: 12px;
+    font-size: 1.4rem;
+    letter-spacing: 10px;
     color: #ffffff;
     text-shadow: 0 0 10px rgba(255,255,255,0.3), 0 0 20px rgba(0,0,0,0.8);
     margin-top: 10px;
@@ -971,7 +971,7 @@ body {
 
 .main-team-title {
     font-size: 4rem;
-    letter-spacing: 12px;
+    letter-spacing: 10px;
     word-spacing: 25px; /* Significant gap between THE, TEAM, and ASTRA */
     text-align: center;
     font-weight: 800;
@@ -1054,7 +1054,7 @@ body {
 
 .member-card h3 {
     font-family: var(--font-header);
-    font-size: 2rem;
+    font-size: 1.4rem;
     margin-bottom: 8px;
     letter-spacing: 3px;
     color: #fff;
@@ -1482,7 +1482,7 @@ body {
     .team-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; }
     .member-card { padding: 20px 15px; border-radius: 12px; animation: none !important; }
     .leader-card { width: 100%; max-width: 260px; }
-    .main-team-title { font-size: 2rem; letter-spacing: 3px; }
+    .main-team-title { font-size: 1.4rem; letter-spacing: 3px; }
     .member-photo-wrapper { width: 90px !important; height: 90px !important; }
     .lead-card .member-photo-wrapper { width: 120px !important; height: 120px !important; }
     .avengers-ring { display: none !important; } /* High performance cost */
