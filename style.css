@@ -1480,13 +1480,48 @@ body {
 /* --- Mobile Overrides & Optimization --- */
 @media (max-width: 768px) {
     .team-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; }
-    .member-card { padding: 20px 15px; border-radius: 12px; animation: none !important; }
+    .member-card { 
+        padding: 20px 15px; 
+        border-radius: 12px; 
+        animation: none !important;
+        background: rgba(255, 255, 255, 0.08) !important; /* Simple flat background */
+    }
+    .member-card::after { display: none !important; } /* Remove complex clip-path border */
     .leader-card { width: 100%; max-width: 260px; }
     .main-team-title { font-size: 2.8rem; letter-spacing: 2px; }
     .member-photo-wrapper { width: 90px !important; height: 90px !important; }
     .lead-card .member-photo-wrapper { width: 120px !important; height: 120px !important; }
     .avengers-ring { display: none !important; } /* High performance cost */
     .glow-orb { filter: blur(40px); opacity: 0.08; }
+
+    /* REMOVING GLASS EFFECTS PER USER REQUEST */
+    .btn-glass, .stat-card, #navbar.scrolled, .contact-card, .lightbox, #start-init-btn {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: rgba(255, 255, 255, 0.08) !important; /* Slightly more opaque fallback */
+    }
+
+    /* SIMPLIFYING ANIMATIONS PER USER REQUEST */
+    .reveal, .reveal-delay, .reveal-delay-2, .reveal-delay-3 {
+        transform: translateY(20px) !important; /* Simple slide up */
+        filter: none !important;
+        transition: transform 0.5s ease-out, opacity 0.5s ease-out !important;
+    }
+
+    .reveal.active, .reveal-delay.active, .reveal-delay-2.active, .reveal-delay-3.active {
+        transform: translateY(0) !important;
+    }
+
+    /* Remove floating animations */
+    .lead-card, .co-lead-card {
+        animation: none !important;
+    }
+
+    /* Remove CRT Overlay Animation if it feels too much */
+    body::after {
+        animation: none !important;
+        opacity: 0.1 !important;
+    }
 }
 
 /* --- Avengers 3D Tech Rings (Desktop Only Optimization) --- */

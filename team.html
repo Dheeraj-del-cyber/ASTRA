@@ -292,9 +292,15 @@
             
             // Materialize the content
             setTimeout(() => {
-                teamWrapper.style.transition = 'opacity 1s ease-out, filter 1.5s cubic-bezier(0.16, 1, 0.3, 1)';
+                const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                if (isMobile) {
+                    teamWrapper.style.transition = 'opacity 0.6s ease-out';
+                    teamWrapper.style.filter = 'none';
+                } else {
+                    teamWrapper.style.transition = 'opacity 1s ease-out, filter 1.5s cubic-bezier(0.16, 1, 0.3, 1)';
+                    teamWrapper.style.filter = 'blur(0) brightness(1) contrast(100%)';
+                }
                 teamWrapper.style.opacity = '1';
-                teamWrapper.style.filter = 'blur(0) brightness(1) contrast(100%)';
             }, 100);
 
             // STOP AND KILL INITIALIZATION VIDEO SOUND
@@ -418,11 +424,15 @@
         $(document).ready(function () {
             try {
                 const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-                $('body').ripples({
-                    resolution: isMobile ? 256 : 512,
-                    dropRadius: 15,
-                    perturbance: 0.04,
-                });
+                
+                // SKIPPING RIPPLE EFFECT ON MOBILE PER USER REQUEST
+                if (!isMobile) {
+                    $('body').ripples({
+                        resolution: 512,
+                        dropRadius: 15,
+                        perturbance: 0.04,
+                    });
+                }
             } catch (e) { }
         });
     </script>
